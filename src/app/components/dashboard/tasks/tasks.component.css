@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .task-form {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .task-form {
+      width: 70%;
+    }
+  }
+  .task-form {
+    margin: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-button {
+    margin-top: 10px;
+  }
+  
+  

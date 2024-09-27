@@ -1,0 +1,34 @@
+<!-- <h3>Personas</h3>
+<div formArrayName="people">
+  <div *ngFor="let person of peopleFormArray.controls; let i = index" [formGroupName]="i">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre Completo</mat-label>
+      <input matInput formControlName="fullName" />
+      <mat-error *ngIf="person.get('fullName')?.invalid && person.get('fullName')?.touched">
+        El nombre completo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input matInput formControlName="age" type="number" />
+      <mat-error *ngIf="person.get('age')?.invalid && person.get('age')?.touched">
+        La edad es requerida
+      </mat-error>
+    </mat-form-field>
+
+    <h4>Habilidades</h4>
+    <div formArrayName="skills">
+      <div *ngFor="let skill of (person.get('skills') as FormArray)?.controls; let j = index">
+        <mat-form-field appearance="fill">
+          <mat-label>Habilidad</mat-label>
+          <input matInput [formControlName]="j" type="text" />
+        </mat-form-field>
+        <button mat-button type="button" (click)="removeSkill(i, j)">Eliminar Habilidad</button>
+      </div>
+    </div>
+    <button mat-button type="button" (click)="addSkill(i)">Agregar Habilidad</button>
+    <button mat-button type="button" (click)="removePerson(i)">Eliminar Persona</button>
+  </div>
+</div>
+<button mat-raised-button type="button" (click)="addPerson()">Agregar Persona</button> -->

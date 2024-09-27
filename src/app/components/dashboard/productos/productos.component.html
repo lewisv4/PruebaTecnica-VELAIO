@@ -1,0 +1,23 @@
+<div class="Tareas">
+  <mat-toolbar>
+    <span>Tareas Extraidas desde un JSON</span>
+  </mat-toolbar>
+  <table>
+    <thead>
+      <tr>
+        <th>userId</th>
+        <th>id</th>
+        <th>title</th>
+        <th>completed</th>
+  
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tareas of tareas">
+        <td>{{ tareas.userId }}</td>
+        <td>{{ tareas.id }}</td>
+        <td>{{ tareas.title }}</td>
+        <td>{{ tareas.completed }}</td>
+      </tr>
+    </tbody>
+  </table>

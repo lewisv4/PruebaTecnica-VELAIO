@@ -1,0 +1,17 @@
+<div class="task-form" style="max-width: 600px; margin: auto;">
+  <h2>Crear Nueva Tarea</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Título de la tarea</mat-label>
+      <input matInput id="title" formControlName="title" />
+      <mat-error *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
+        El título es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="completed">Completada</mat-checkbox>
+
+    <button mat-raised-button type="submit" [disabled]="taskForm.invalid">Crear Tarea</button>
+  </form>
+</div>
