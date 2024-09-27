@@ -21,6 +21,9 @@ export class CacheService {
   clearItem(key: string): void {
     localStorage.removeItem(key);
   }
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
+  }
 
   // Limpiar todo el cache
   clearAll(): void {

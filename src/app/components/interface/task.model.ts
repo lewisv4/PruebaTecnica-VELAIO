@@ -1,14 +1,12 @@
-// models/task.model.ts
+
+import { Person } from './person.model';
+
 export interface Task {
+    id?: number;
     userId: number;
     title: string;
     completed: boolean;
-    people: Person[];
-  }
+    people: Person[]; 
+}
+
   
-  // models/person.model.ts
-export interface Person {
-    fullName: string;
-    age: number;
-    skills: string[];
-  }

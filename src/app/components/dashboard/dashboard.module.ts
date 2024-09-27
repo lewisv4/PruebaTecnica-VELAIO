@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -9,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductosComponent } from './productos/productos.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { PeopleComponent } from './people/people.component';
+import  {SkillComponent } from './skill/skill.component';
 
 
 @NgModule({
@@ -18,7 +18,9 @@ import { PeopleComponent } from './people/people.component';
     NavbarComponent,
     ProductosComponent,
     PeopleComponent,
-    TasksComponent
+    SkillComponent,
+    TasksComponent,
+      
   ],
   imports: [
     CommonModule,

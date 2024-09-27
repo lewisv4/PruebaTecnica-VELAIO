@@ -40,6 +40,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -80,6 +81,15 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     MatGridListModule,
     FormsModule,
+    MatCardModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatListModule,
+    MatButtonModule,
     
   ],
 
@@ -119,7 +129,14 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     MatGridListModule,
     MatListModule,
-    FormsModule   
+    FormsModule,
+    MatCardModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatChipsModule,   
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es'},

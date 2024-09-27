@@ -1,31 +1,53 @@
-<div class="task-list">
-  <h2>Lista de Tareas</h2>
-  <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+<div class="taskList">
+  <div class="task-list">
+    <h2>Lista de Tareas</h2>
+    <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
 
-    <!-- Columna para el título de la tarea -->
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Título</th>
-      <td mat-cell *matCellDef="let task">{{ task.title }}</td>
-    </ng-container>
-
-    <!-- Columna para el estado de la tarea -->
-    <ng-container matColumnDef="completed">
-      <th mat-header-cell *matHeaderCellDef>Estado</th>
-      <td mat-cell *matCellDef="let task">
-        <span [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
-          {{ task.completed ? 'Completada' : 'Pendiente' }}
-        </span>
-      </td>
-    </ng-container>
-
-    <!-- Cabecera de la tabla -->
-    <tr mat-header-row *matHeaderRowDef="['title', 'completed']"></tr>
-    <!-- Filas de la tabla -->
-    <tr mat-row *matRowDef="let row; columns: ['title', 'completed'];"></tr>
-  </table>
+       <!-- Columna para el título de la tarea -->
+       <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let task">{{ task.userId }}</td>
+      </ng-container>
+  
+      <!-- Columna para el título de la tarea -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+      </ng-container>
+  
+      <!-- Columna para el estado de la tarea -->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let task">
+          <span [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+            {{ task.completed ? 'Completada' : 'Pendiente' }}
+          </span>
+        </td>
+      </ng-container>
+  
+      <!-- Cabecera de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="['title', 'completed']"></tr>
+      <!-- Filas de la tabla -->
+      <tr mat-row *matRowDef="let row; columns: ['title', 'completed'];"></tr>
+    </table>
+  </div>
+  
+</div>
+<div class="tasks">
+  <app-tasks></app-tasks>
 </div>
 
 
-<app-tasks></app-tasks>
+<div class="people">
+  <app-people></app-people>
+</div>
+<div class="skill">
+  <app-skills></app-skills>
+</div>
+
+
+
+
+
 
 

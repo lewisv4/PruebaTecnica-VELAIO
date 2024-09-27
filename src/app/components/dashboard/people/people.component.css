@@ -1,0 +1,11 @@
+.people-list {
+  margin: 20px;
+}
+
+.people-list mat-list {
+  margin-left: 20px; /* Sangría para las habilidades */
+}
+
+.people-list strong {
+  font-weight: bold; /* Resalta la palabra "Habilidades" */
+}

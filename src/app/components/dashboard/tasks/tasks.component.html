@@ -1,17 +1,32 @@
 <div class="task-form" style="max-width: 600px; margin: auto;">
-  <h2>Crear Nueva Tarea</h2>
+  <h2 *ngIf="!isEditing">Crear Nueva Tarea</h2>
+  <h2 *ngIf="isEditing">Editar Tarea</h2>
 
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>Título de la tarea</mat-label>
-      <input matInput id="title" formControlName="title" />
+      <input matInput id="title" formControlName="title" required />
       <mat-error *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
         El título es requerido
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Selecciona una persona</mat-label>
+      <mat-select formControlName="people" required>
+        <mat-option *ngFor="let person of (people$ | async)" [value]="person.fullName">
+          {{ person.fullName }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="taskForm.get('fullName')?.invalid && taskForm.get('fullName')?.touched">
+        La persona es requerida
+      </mat-error>
+    </mat-form-field>
+
     <mat-checkbox formControlName="completed">Completada</mat-checkbox>
 
-    <button mat-raised-button type="submit" [disabled]="taskForm.invalid">Crear Tarea</button>
+    <button mat-raised-button type="submit" [disabled]="taskForm.invalid">
+      {{ isEditing ? 'Actualizar Tarea' : 'Crear Tarea' }}
+    </button>
   </form>
 </div>

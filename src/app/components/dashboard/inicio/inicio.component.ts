@@ -20,6 +20,11 @@ export class InicioComponent implements OnInit {
       people: this.fb.array([]) // Array de personas
     });
   }
+  triggerTaskFunction() {
+    this.taskService.executeFunction();
+    console.log("triggerTaskFunction inicio");
+    this.loadTasks();
+  }
 
   ngOnInit(): void {
     this.loadTasks();

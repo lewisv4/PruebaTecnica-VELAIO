@@ -1,36 +1,80 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Person } from '../../interface/person.model'; 
+import { PersonService } from 'src/app/services/person.service';
+import { Observable } from 'rxjs';
+import { Skill } from '../../interface/skill.model';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
-  selector: 'app-people-form',
+  selector: 'app-people',
   templateUrl: './people.component.html',
   styleUrls: ['./people.component.css']
 })
-export class PeopleComponent {
-  // @Input() peopleFormArray: FormArray;
+export class PeopleComponent implements OnInit {
+  personForm: FormGroup;
+  people: Person[] = [];
+  skills$: Observable<Skill[]>; // Observable para las habilidades
+  editIndex: number | null = null;
 
-  // constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private personService: PersonService, private skillService: SkillService) {
+    this.personForm = this.fb.group({
+      fullName: ['', Validators.required],
+      age: ['', [Validators.required, Validators.min(0)]],
+      skills: [[], Validators.required] // El array de habilidades seleccionadas
+    });
 
-  // addPerson(): void {
-  //   const personGroup = this.fb.group({
-  //     fullName: ['', Validators.required],
-  //     age: ['', [Validators.required, Validators.min(1)]],
-  //     skills: this.fb.array([])
-  //   });
-  //   this.peopleFormArray.push(personGroup);
-  // }
+    // Inicializa el observable de habilidades
+    this.skills$ = this.skillService.getAllSkills();
+  }
 
-  // removePerson(index: number): void {
-  //   this.peopleFormArray.removeAt(index);
-  // }
+  ngOnInit(): void {
+    this.loadPeople();
+  }
 
-  // addSkill(personIndex: number): void {
-  //   const skillsArray = this.peopleFormArray.at(personIndex).get('skills') as FormArray;
-  //   skillsArray.push(this.fb.control('', Validators.required));
-  // }
+  loadPeople(): void {
+    this.personService.getAllPeople().subscribe(people => {
+      this.people = people;
+    });
+  }
 
-  // removeSkill(personIndex: number, skillIndex: number): void {
-  //   const skillsArray = this.peopleFormArray.at(personIndex).get('skills') as FormArray;
-  //   skillsArray.removeAt(skillIndex);
-  // }
+  onSubmit(): void {
+    if (this.personForm.valid) {
+      const person: Person = {
+        ...this.personForm.value,
+        skills: this.personForm.value.skills // Asegúrate de que estás capturando las habilidades correctamente
+      };
+  
+      if (this.editIndex !== null) {
+        this.personService.updatePerson(this.editIndex, person);
+      } else {
+        this.personService.addPerson(person);
+      }
+  
+      this.loadPeople();
+      this.resetForm();
+    }
+  }
+
+  editPerson(index: number): void {
+    const person = this.people[index];
+    this.editIndex = index;
+    this.personForm.patchValue({
+      fullName: person.fullName,
+      age: person.age,
+      skills: person.skills
+    });
+    this.loadPeople();
+    console.log("editPerson",index);
+  }
+  
+  deletePerson(index: number): void {
+    this.personService.deletePerson(index);
+    this.loadPeople();
+  }
+
+  resetForm(): void {
+    this.personForm.reset();
+    this.editIndex = null;
+  }
 }
