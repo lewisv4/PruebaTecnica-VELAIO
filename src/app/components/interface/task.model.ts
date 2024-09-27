@@ -1,14 +1,14 @@
 
 import { Person } from './person.model';
-
+import { Skill } from './skill.model';
 export interface Task {
-        id?: number;
-        title: string;
-        completed: boolean;
-        userId: number;
-        people?: string;
-        createdAt?: Date; // Agregar el campo de fecha de creación
-      
+    id?: number;
+    persona: Person;
+    titulo: string;
+    fechaCreacion: Date;
+    completada: boolean;
+    habilidades: Skill[];
+  
       
 }
 

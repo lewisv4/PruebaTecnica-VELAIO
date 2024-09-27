@@ -1,74 +1,100 @@
-<div class="taskList">
-  <div class="task-list">
-    <h2>Lista de Tareas</h2>
-    <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+<div>
+  <div class="task-form">
+    <h2>Crear/Actualizar tarea</h2>
+    <form [formGroup]="tareaForm" (ngSubmit)="agregarTarea()">
+      <mat-form-field appearance="fill">
+        <mat-label>Tarea</mat-label>
+        <input matInput formControlName="titulo" required />
+        <mat-error *ngIf="tareaForm.get('titulo')?.invalid && tareaForm.get('titulo')?.touched">
+          La tarea es requerida
+        </mat-error>
+      </mat-form-field>
+
+       <mat-form-field appearance="fill">
+        <mat-label>Selecciona una persona</mat-label>
+        <mat-select formControlName="persona" multiple required>
+          <mat-option *ngFor="let persona of (personas$ | async)" [value]="persona.fullName">
+            {{ persona.fullName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="tareaForm.get('persona')?.invalid && tareaForm.get('persona')?.touched">
+          La persona es requerida
+        </mat-error>
+      </mat-form-field> 
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de Creación</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaCreacion" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!-- Mensaje de error si el campo está inválido y ha sido tocado -->
+        <mat-error *ngIf="tareaForm.get('fechaCreacion')?.invalid && tareaForm.get('fechaCreacion')?.touched">
+          La fecha de creación es requerida
+        </mat-error>
+      </mat-form-field>
       
-      <!-- Columna para el ID del usuario -->
-      <ng-container matColumnDef="userId">
-        <th mat-header-cell *matHeaderCellDef>ID Usuario</th>
-        <td mat-cell *matCellDef="let task">{{ task.userId }}</td>
-      </ng-container>
+      <div>
+        <label for="completada">Completada</label>
+      <input type="checkbox" formControlName="completada" />
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona una Habilidad</mat-label>
+        <mat-select formControlName="habilidades" multiple required>
+          <mat-option *ngFor="let skill of (skills$ | async)" [value]="skill.name">
+            {{ skill.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="tareaForm.get('skills')?.invalid && tareaForm.get('skills')?.touched">
+          La habilidad es requerida
+        </mat-error>
+      </mat-form-field>
 
-      <!-- Columna para el título de la tarea -->
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Título</th>
-        <td mat-cell *matCellDef="let task">{{ task.title }}</td>
-      </ng-container>
+      <button mat-raised-button type="submit" >Enviar</button> <!--[disabled]="tareaForm.invalid" -->
 
-      <!-- Columna para el estado de la tarea -->
-      <ng-container matColumnDef="completed">
-        <th mat-header-cell *matHeaderCellDef>Estado</th>
-        <td mat-cell *matCellDef="let task">
-          <span [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
-            {{ task.completed ? 'Completada' : 'Pendiente' }}
-          </span>
-        </td>
-      </ng-container>
 
-      <!-- Cabecera de la tabla -->
-      <tr mat-header-row *matHeaderRowDef="['userId', 'title', 'completed']"></tr>
-      <!-- Filas de la tabla -->
-      <tr mat-row *matRowDef="let row; columns: ['userId', 'title', 'completed'];"></tr>
-    </table>
+      </div>
+      
+  
+    </form>
   </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Completada</th>
+        <th>Fecha de Creación</th>
+        <th>Título</th>
+        <th>Persona</th>
+        <th>Habilidades</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareas,  let i = index">
+        <td>
+          <input type="checkbox" [checked]="tarea.completada" disabled />
+        </td>
+        <td>{{ tarea.fechaCreacion | date: 'mediumDate' }}</td>
+        <td>{{ tarea.titulo }}</td>
+        <td>
+          <ul>
+            <td>{{ tarea.persona }}</td>
+          </ul>
+        </td>
+
+        <td>
+          <ul>
+            <li *ngFor="let habilidad of tarea.habilidades">{{ habilidad }}</li>
+          </ul>
+        </td>
+        <td>
+          <button (click)="editarTarea(i)">Actualizar</button>
+           <button (click)="eliminarTarea(i)">Eliminar</button> 
+        </td>
+        
+        
+      </tr>
+    </tbody>
+  </table>
+  
 </div>
-
-<div class="task-form" style="max-width: 600px; margin: auto;">
-  <h2 *ngIf="!isEditing">Crear Nueva Tarea</h2>
-  <h2 *ngIf="isEditing">Editar Tarea</h2>
-
-  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Título de la tarea</mat-label>
-      <input matInput id="title" formControlName="title" required />
-      <mat-error *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
-        El título es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Selecciona una persona</mat-label>
-      <mat-select formControlName="people" required>
-        <mat-option *ngFor="let person of (people$ | async)" [value]="person.fullName">
-          {{ person.fullName }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="taskForm.get('people')?.invalid && taskForm.get('people')?.touched">
-        La persona es requerida
-      </mat-error>
-    </mat-form-field>
-
-    <mat-checkbox formControlName="completed">Completada</mat-checkbox>
-
-    <!-- Campo para la fecha de creación, solo visible al editar -->
-    <div *ngIf="isEditing" class="created-at">
-      <label>Fecha de Creación:</label>
-      <span>{{ taskForm.get('createdAt')?.value | date: 'dd/MM/yyyy, h:mm a' }}</span>
-    </div>
-
-    <button mat-raised-button type="submit" [disabled]="taskForm.invalid">
-      {{ isEditing ? 'Actualizar Tarea' : 'Crear Tarea' }}
-    </button>
-  </form>
-</div>
-

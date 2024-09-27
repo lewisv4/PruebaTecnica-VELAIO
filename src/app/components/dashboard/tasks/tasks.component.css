@@ -1,61 +1,44 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 20px;
-}
+.task-form{
+display: flex;
 
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.task-form {
-  width: 100%;
-  margin: 20px;
-}
-
-.mat-form-field {
-  width: 100%;
-}
-
-.mat-button {
-  margin-top: 10px;
-}
-
-.taskList {
-  max-width: 800px;
-  margin: auto;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.task-list h2 {
-  text-align: center;
-  color: #333;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden; /* Para los bordes redondeados */
 }
 
-th.mat-header-cell {
+th, td {
+  padding: 12px 15px;
+}
+
+th {
   background-color: #007bff;
   color: white;
-  padding: 12px;
-  text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #ddd;
 }
 
-td.mat-cell {
-  padding: 12px;
+td {
+  background-color: #f9f9f9;
   border-bottom: 1px solid #ddd;
+  color: #333;
 }
 
-td.mat-cell span {
+tr:hover td {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+td span {
   font-weight: bold;
 }
 
@@ -67,45 +50,23 @@ span.pending {
   color: red;
 }
 
-tr.mat-row:hover {
-  background-color: #f1f1f1;
-}
-
-.tasks, .people, .skill {
-  margin-top: 20px;
-  text-align: center;
-}
-
-app-tasks, app-people, app-skills {
-  display: inline-block;
-  width: 50%;
-  margin: 0 10px;
-  background: #fff;
+.mat-elevation-z8 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajuste para sombra */
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.2s;
 }
 
-app-tasks:hover, app-people:hover, app-skills:hover {
-  transform: translateY(-3px);
+/* Añadir efecto de transición en el hover */
+tr {
+  transition: background-color 0.3s ease-in-out;
 }
 
-/* Media Queries */
-@media (min-width: 768px) {
-  .container {
-      flex-direction: row;
-      justify-content: space-between;
-  }
-
-  .task-form {
-      width: 70%;
-  }
-}
-
+/* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
-  app-tasks, app-people, app-skills {
-      width: 90%;
-      margin: 10px auto;
+  th, td {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 14px;
   }
 }
