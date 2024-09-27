@@ -1,0 +1,148 @@
+/* Estilos generales para pantallas pequeñas */
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%; /* Botón ocupa todo el ancho */
+  }
+  
+  button:hover {
+    background-color: #ff3333;
+  }
+  
+  ul ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  ul ul li {
+    background: none;
+    border: none;
+    padding: 5px 0;
+    box-shadow: none;
+  }
+  
+  /* Estilos para pantallas más grandes */
+  @media (min-width: 600px) {
+    button {
+      width: auto; /* Restablecer ancho automático en pantallas más grandes */
+    }
+  }
+  /* Estilos generales para pantallas pequeñas */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%; /* Se adapta al ancho del dispositivo */
+    margin: auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  button[type="button"], button[type="submit"] {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Botón ocupa todo el ancho */
+  }
+  
+  button[type="button"] {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  /* Estilos para pantallas más grandes */
+  @media (min-width: 600px) {
+    form {
+      max-width: 400px; /* Restablecer el ancho máximo en pantallas más grandes */
+    }
+  
+    button[type="button"], button[type="submit"] {
+      width: auto; /* Restablecer ancho automático en pantallas más grandes */
+    }
+  }
+  /* Estilos generales para campos de formulario */
+div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; /* Espaciado entre campos */
+  }
+  
+  label {
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
+    font-weight: bold;
+    color: #555; /* Color del texto de las etiquetas */
+  }
+  
+  input {
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Bordes suaves */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1em; /* Tamaño de fuente legible */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+  }
+  
+  /* Estilo para entradas en estado inválido */
+  input.ng-invalid {
+    border-color: #e74c3c; /* Color de borde rojo para entradas inválidas */
+  }
+  
+  /* Estilo para entradas en estado válido */
+  input.ng-valid {
+    border-color: #2ecc71; /* Color de borde verde para entradas válidas */
+  }
+  
+  

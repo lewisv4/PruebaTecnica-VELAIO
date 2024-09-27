@@ -1,3 +1,81 @@
+
+
+<!-- <div class="skill-list">
+  <h2>Lista de Habilidades</h2>
+  <table mat-table [dataSource]="skills" class="mat-elevation-z8"> 
+  
+    <!-- Columna para el nombre de la habilidad -->
+    <!-- <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre de la Habilidad</th>
+      <td mat-cell *matCellDef="let skill">{{ skill.name }}</td>
+    </ng-container> -->
+  
+    <!-- Columna para el nivel -->
+    <!-- <ng-container matColumnDef="level">
+      <th mat-header-cell *matHeaderCellDef>Nivel</th>
+      <td mat-cell *matCellDef="let skill">{{ skill.level }}</td>
+    </ng-container> -->
+  
+    <!-- Columna para editar -->
+    <!-- <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let skill; let i = index">
+        <button mat-button (click)="editSkill(i)">Editar</button>
+      </td>
+    </ng-container> -->
+  
+    <!-- Columna para eliminar -->
+    <!-- <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let skill; let i = index">
+        <button mat-button color="warn" (click)="deleteSkill(i)">Eliminar</button>
+      </td>
+    </ng-container> -->
+  
+    <!-- Cabecera de la tabla -->
+    <!-- <tr mat-header-row *matHeaderRowDef="['name', 'level', 'edit', 'delete']"></tr> -->
+    <!-- Filas de la tabla -->
+    <!-- <tr mat-row *matRowDef="let row; columns: ['name', 'level', 'edit', 'delete'];"></tr> -->
+  <!-- </table>
+</div> -->
+
+<div class="skill-list">
+  <h2>Lista de Habilidades</h2>
+  <table>
+    <!-- Cabecera de la tabla -->
+    <thead>
+      <tr>
+        <th>Nombre de la Habilidad</th>
+        <th>Nivel</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+  
+    <!-- Cuerpo de la tabla -->
+    <tbody>
+      <tr *ngFor="let skill of skills; let i = index">
+        <!-- Columna para el nombre de la habilidad -->
+        <td>{{ skill.name }}</td>
+  
+        <!-- Columna para el nivel -->
+        <td>{{ skill.level }}</td>
+  
+        <!-- Columna para editar -->
+        <td>
+          <button (click)="editSkill(i)">Editar</button>
+        </td>
+  
+        <!-- Columna para eliminar -->
+        <td>
+          <button (click)="deleteSkill(i)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
 <div class="skill-form">
   <h2>Crear/Actualizar Habilidad</h2>
   <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
@@ -24,45 +102,6 @@
 
     <button mat-raised-button type="submit" [disabled]="skillForm.invalid">Enviar</button>
   </form>
-</div>
-
-<div class="skill-list">
-  <h2>Lista de Habilidades</h2>
-  <table mat-table [dataSource]="dataSourceList " class="mat-elevation-z8">
-  
-    <!-- Columna para el nombre de la habilidad -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nombre de la Habilidad</th>
-      <td mat-cell *matCellDef="let skill">{{ skill.name }}</td>
-    </ng-container>
-  
-    <!-- Columna para el nivel -->
-    <ng-container matColumnDef="level">
-      <th mat-header-cell *matHeaderCellDef>Nivel</th>
-      <td mat-cell *matCellDef="let skill">{{ skill.level }}</td>
-    </ng-container>
-  
-    <!-- Columna para editar -->
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef>Editar</th>
-      <td mat-cell *matCellDef="let skill; let i = index">
-        <button mat-button (click)="editSkill(i)">Editar</button>
-      </td>
-    </ng-container>
-  
-    <!-- Columna para eliminar -->
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-      <td mat-cell *matCellDef="let skill; let i = index">
-        <button mat-button color="warn" (click)="deleteSkill(i)">Eliminar</button>
-      </td>
-    </ng-container>
-  
-    <!-- Cabecera de la tabla -->
-    <tr mat-header-row *matHeaderRowDef="['name', 'level', 'edit', 'delete']"></tr>
-    <!-- Filas de la tabla -->
-    <tr mat-row *matRowDef="let row; columns: ['name', 'level', 'edit', 'delete'];"></tr>
-  </table>
 </div>
 
 

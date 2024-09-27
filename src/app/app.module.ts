@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
 import { LoginComponent } from './components/dashboard/login/login.component';
-import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({

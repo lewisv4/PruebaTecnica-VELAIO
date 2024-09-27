@@ -1,0 +1,67 @@
+<!-- listar-tareas.component.html -->
+<ul>
+    <li *ngFor="let tarea of tareas">
+      <strong>{{ tarea.nombre }}</strong> ({{ tarea.fechaLimite | date }})
+      <button (click)="eliminarTarea(tarea.id!)">Eliminar</button>
+  
+      <div *ngIf="tarea.personas.length > 0">
+        <h4>Personas Asociadas:</h4>
+        <ul>
+          <li *ngFor="let persona of tarea.personas">
+            Nombre: {{ persona.nombreCompleto }}, Edad: {{ persona.edad }},
+          </li>
+        </ul>
+      </div>
+  
+      <div *ngIf="tarea.personas.length === 0">
+        <p>No hay personas asociadas a esta tarea.</p>
+      </div>
+
+
+
+      <div *ngIf="tarea.habilidades.length > 0">
+        <h4>Habilidades Asociadas:</h4>
+        <ul>
+          <li *ngFor="let habilidades of tarea.habilidades">
+            Habilidad: {{ habilidades.nombre }}
+          </li>
+        </ul>
+      </div>
+  
+      <div *ngIf="tarea.habilidades.length === 0">
+        <p>No hay habilidades asociadas a esta tarea.</p>
+      </div>
+
+      
+    </li>
+  </ul>
+  
+
+<!-- crear-tarea.component.html -->
+<h2>Crear Nueva Tarea</h2>
+<form (ngSubmit)="guardarTarea()">
+  <label for="nombre">Nombre de la tarea:</label>
+  <input id="nombre" [(ngModel)]="tarea.nombre" name="nombre" required>
+
+  <label for="fechaLimite">Fecha límite:</label>
+  <input id="fechaLimite" type="date" [(ngModel)]="tarea.fechaLimite" name="fechaLimite" required>
+
+  <h3>Personas Asociadas:</h3>
+  <div *ngFor="let persona of tarea.personas; let i = index">
+    <label for="nombreCompleto">Nombre completo:</label>
+    <input id="nombreCompleto" [(ngModel)]="persona.nombreCompleto" name="nombreCompleto{{i}}" required>
+
+    <label for="edad">Edad:</label>
+    <input id="edad" [(ngModel)]="persona.edad" name="edad{{i}}" type="number" required>
+  </div>
+  <button type="button" (click)="tarea.personas.push({ nombreCompleto: '', edad: null })">Añadir Persona</button>
+
+  <h3>Habilidades:</h3>
+  <div *ngFor="let habilidad of tarea.habilidades; let i = index">
+    <input [(ngModel)]="habilidad.nombre" name="habilidad{{i}}" required>
+  </div>
+  <button type="button" (click)="tarea.habilidades.push({ nombre: '' })">Añadir Habilidad</button>
+
+  <button type="submit">Guardar Tarea</button>
+</form>
+

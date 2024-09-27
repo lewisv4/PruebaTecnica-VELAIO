@@ -2,11 +2,14 @@
 import { Person } from './person.model';
 
 export interface Task {
-    id?: number;
-    userId: number;
-    title: string;
-    completed: boolean;
-    people: Person[]; 
+        id?: number;
+        title: string;
+        completed: boolean;
+        userId: number;
+        people?: string;
+        createdAt?: Date; // Agregar el campo de fecha de creación
+      
+      
 }
 
   

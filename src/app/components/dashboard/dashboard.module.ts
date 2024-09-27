@@ -9,6 +9,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { PeopleComponent } from './people/people.component';
 import  {SkillComponent } from './skill/skill.component';
+import { TareaComponent } from './tarea/tarea.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import  {SkillComponent } from './skill/skill.component';
     PeopleComponent,
     SkillComponent,
     TasksComponent,
+    TareaComponent,
       
   ],
   imports: [

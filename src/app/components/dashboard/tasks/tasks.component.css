@@ -1,33 +1,111 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
-  
-  .task-form {
-    width: 100%;
-  }
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
 
-  @media (min-width: 768px) {
-    .container {
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.task-form {
+  width: 100%;
+  margin: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-button {
+  margin-top: 10px;
+}
+
+.taskList {
+  max-width: 800px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.task-list h2 {
+  text-align: center;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th.mat-header-cell {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+td.mat-cell {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+td.mat-cell span {
+  font-weight: bold;
+}
+
+span.completed {
+  color: green;
+}
+
+span.pending {
+  color: red;
+}
+
+tr.mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+.tasks, .people, .skill {
+  margin-top: 20px;
+  text-align: center;
+}
+
+app-tasks, app-people, app-skills {
+  display: inline-block;
+  width: 50%;
+  margin: 0 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s;
+}
+
+app-tasks:hover, app-people:hover, app-skills:hover {
+  transform: translateY(-3px);
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .container {
       flex-direction: row;
       justify-content: space-between;
-    }
-  
-    .task-form {
-      width: 70%;
-    }
   }
+
   .task-form {
-    margin: 20px;
+      width: 70%;
   }
-  
-  .mat-form-field {
-    width: 100%;
+}
+
+@media (max-width: 768px) {
+  app-tasks, app-people, app-skills {
+      width: 90%;
+      margin: 10px auto;
   }
-  
-  .mat-button {
-    margin-top: 10px;
-  }
-  
-  
+}

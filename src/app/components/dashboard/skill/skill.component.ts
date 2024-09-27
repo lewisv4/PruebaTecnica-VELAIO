@@ -14,6 +14,7 @@ export class SkillComponent implements OnInit {
   skills: Skill[] = [];
   dataSourceList: Skill[] = []; // Propiedad para la tabla
   editingIndex: number | null = null;
+  
 
   constructor(private fb: FormBuilder, private skillService: SkillService) {
     this.skillForm = this.fb.group({
@@ -31,6 +32,7 @@ export class SkillComponent implements OnInit {
       this.skills = skills; // Almacena las habilidades en la propiedad `skills`
       this.dataSourceList = skills; // Asigna las habilidades a `dataSourceList`
     });
+    console.log("loadSkills");
   }
 
   onSubmit(): void {
@@ -41,6 +43,7 @@ export class SkillComponent implements OnInit {
 
       if (this.editingIndex !== null) {
         this.skillService.updateSkill(this.editingIndex, skill);
+        this.loadSkills();
       } else {
         this.skillService.addSkill(skill);
       }
@@ -67,6 +70,7 @@ export class SkillComponent implements OnInit {
   deleteSkill(index: number): void {
     this.skillService.deleteSkill(index);
     this.loadSkills(); // Carga las habilidades actualizadas
+    console.log("deleteSkill",index);
   }
 
   resetForm(): void {

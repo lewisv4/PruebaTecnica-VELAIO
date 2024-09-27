@@ -1,3 +1,38 @@
+<div class="taskList">
+  <div class="task-list">
+    <h2>Lista de Tareas</h2>
+    <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+      
+      <!-- Columna para el ID del usuario -->
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>ID Usuario</th>
+        <td mat-cell *matCellDef="let task">{{ task.userId }}</td>
+      </ng-container>
+
+      <!-- Columna para el título de la tarea -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+      </ng-container>
+
+      <!-- Columna para el estado de la tarea -->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let task">
+          <span [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+            {{ task.completed ? 'Completada' : 'Pendiente' }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Cabecera de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="['userId', 'title', 'completed']"></tr>
+      <!-- Filas de la tabla -->
+      <tr mat-row *matRowDef="let row; columns: ['userId', 'title', 'completed'];"></tr>
+    </table>
+  </div>
+</div>
+
 <div class="task-form" style="max-width: 600px; margin: auto;">
   <h2 *ngIf="!isEditing">Crear Nueva Tarea</h2>
   <h2 *ngIf="isEditing">Editar Tarea</h2>
@@ -18,15 +53,22 @@
           {{ person.fullName }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="taskForm.get('fullName')?.invalid && taskForm.get('fullName')?.touched">
+      <mat-error *ngIf="taskForm.get('people')?.invalid && taskForm.get('people')?.touched">
         La persona es requerida
       </mat-error>
     </mat-form-field>
 
     <mat-checkbox formControlName="completed">Completada</mat-checkbox>
 
+    <!-- Campo para la fecha de creación, solo visible al editar -->
+    <div *ngIf="isEditing" class="created-at">
+      <label>Fecha de Creación:</label>
+      <span>{{ taskForm.get('createdAt')?.value | date: 'dd/MM/yyyy, h:mm a' }}</span>
+    </div>
+
     <button mat-raised-button type="submit" [disabled]="taskForm.invalid">
       {{ isEditing ? 'Actualizar Tarea' : 'Crear Tarea' }}
     </button>
   </form>
 </div>
+
